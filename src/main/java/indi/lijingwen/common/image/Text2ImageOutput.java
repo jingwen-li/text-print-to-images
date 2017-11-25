@@ -11,7 +11,7 @@ public class Text2ImageOutput {
     /**
      * The image content.
      */
-    byte[] images = null;
+    byte[] image = null;
 
     /**
      * The printed text index.
@@ -23,12 +23,12 @@ public class Text2ImageOutput {
      */
     public int height;
 
-    public byte[] getImages() {
-        return images;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImages(byte[] images) {
-        this.images = images;
+    public void setImage(byte[] images) {
+        this.image = image;
     }
 
     public int getIndex() {
@@ -47,8 +47,8 @@ public class Text2ImageOutput {
         this.height = height;
     }
 
-    public Text2ImageOutput(int index, int height, byte[] images) {
-        this.images = images;
+    public Text2ImageOutput(int index, int height, byte[] image) {
+        this.image = image;
         this.index = index;
         this.height = height;
     }

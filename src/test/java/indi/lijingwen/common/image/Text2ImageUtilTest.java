@@ -1,5 +1,6 @@
 package indi.lijingwen.common.image;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +9,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Runing testing will be create tmp images, should manually delete
+ * Testing class for Text2ImageUtil.
+ *
+ * @author lijingwen
  */
 public class Text2ImageUtilTest {
 
@@ -23,7 +26,7 @@ public class Text2ImageUtilTest {
 
     @Test
     public void shortContent() throws IOException {
-        String text = "hello world";
+        String text = "Hello world!";
         Text2ImageOutput output = Text2ImageUtil.generateImage(settings, text);
         validateOutput(text, output, "text-short-");
     }
@@ -78,14 +81,14 @@ public class Text2ImageUtilTest {
     }
 
     private void validateOutput(String text, Text2ImageOutput output, String outputFilePrefix) throws IOException {
-        Assert.assertNotNull(output.getImages());
+        Assert.assertNotNull(output.getImage());
         Assert.assertEquals(text.length(), output.index);
         System.out.println("image height: " + output.getHeight());
         System.out.println("process text: " + output.getIndex());
         // TODO: if you want to see the test case output file, please open the commented out code.
-        // File imgBytesFile = File.createTempFile(outputFilePrefix, ".bmp", dictionary);
-        // FileUtils.writeByteArrayToFile(imgBytesFile, output.getImages());
-        // System.out.println(imgBytesFile);
+        File imgBytesFile = File.createTempFile(outputFilePrefix, ".bmp", dictionary);
+        FileUtils.writeByteArrayToFile(imgBytesFile, output.getImage());
+        System.out.println(imgBytesFile);
     }
 
 

@@ -1,6 +1,6 @@
 package indi.lijingwen.common.image;
 
-import org.apache.commons.io.FileUtils;
+// import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,9 +86,10 @@ public class Text2ImageUtilTest {
         System.out.println("image height: " + output.getHeight());
         System.out.println("process text: " + output.getIndex());
         // TODO: if you want to see the test case output file, please open the commented out code.
-        File imgBytesFile = File.createTempFile(outputFilePrefix, ".bmp", dictionary);
-        FileUtils.writeByteArrayToFile(imgBytesFile, output.getImage());
-        System.out.println(imgBytesFile);
+        // Also should import org.apache.commons.io.FileUtils;
+        // File imgBytesFile = File.createTempFile(outputFilePrefix, ".bmp", dictionary);
+        // FileUtils.writeByteArrayToFile(imgBytesFile, output.getImage());
+        // System.out.println(imgBytesFile);
     }
 
 

@@ -16,12 +16,10 @@ import java.io.IOException;
 public class Text2ImageUtilTest {
 
     private Text2ImageSettings settings = null;
-    File dictionary = null;
 
     @Before
     public void setup() {
         settings = new Text2ImageSettings();
-        dictionary = new File("./");
     }
 
     @Test
@@ -61,7 +59,8 @@ public class Text2ImageUtilTest {
         while (index < text.length()) {
             files++;
             Text2ImageOutput output = Text2ImageUtil.generateImage(settings, text.substring(index));
-            validateOutput(text, output, "text-mutil-images-");
+            index += output.getIndex();
+            validateMutilOutput(text, output, "text-mutil-images-");
         }
         Assert.assertEquals(files, 2);
     }
@@ -75,8 +74,10 @@ public class Text2ImageUtilTest {
         while (index < text.length()) {
             files++;
             Text2ImageOutput output = Text2ImageUtil.generateImage(settings, text.substring(index));
-            validateOutput(text, output, "text-chinese-");
+            index += output.getIndex();
+            validateMutilOutput(text, output, "text-chinese-");
         }
+
         Assert.assertEquals(files, 3);
     }
 
@@ -85,8 +86,22 @@ public class Text2ImageUtilTest {
         Assert.assertEquals(text.length(), output.index);
         System.out.println("image height: " + output.getHeight());
         System.out.println("process text: " + output.getIndex());
+        writeImageToFile(output.getImage());
+    }
+
+    private void validateMutilOutput(String text, Text2ImageOutput output, String outputFilePrefix) throws IOException {
+        Assert.assertNotNull(output.getImage());
+        Assert.assertTrue(text.length() >= output.index);
+        System.out.println("image height: " + output.getHeight());
+        System.out.println("process text: " + output.getIndex());
+        writeImageToFile(output.getImage());
+    }
+
+    private void writeImageToFile(byte[] image) {
+        System.out.println("TODO: if you want to see the test case output file, please open the commented out code");
         // TODO: if you want to see the test case output file, please open the commented out code.
         // Also should import org.apache.commons.io.FileUtils;
+        // File dictionary = new File("./");
         // File imgBytesFile = File.createTempFile(outputFilePrefix, ".bmp", dictionary);
         // FileUtils.writeByteArrayToFile(imgBytesFile, output.getImage());
         // System.out.println(imgBytesFile);
